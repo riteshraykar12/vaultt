@@ -43,8 +43,8 @@ const Navbar = () => {
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8 text-sm font-medium">
           <a href="#services" className="hover:-translate-y-px transition-transform text-white hover:text-foreground">Services</a>
-          <a href="#proof" className="hover:-translate-y-px transition-transform text-white hover:text-foreground">Testimonials</a>
           <a href="#method" className="hover:-translate-y-px transition-transform text-white hover:text-foreground">Method</a>
+          <a href="#proof" className="hover:-translate-y-px transition-transform text-white hover:text-foreground">Testimonials</a>
           <a href="#pricing" className="hover:-translate-y-px transition-transform text-white hover:text-foreground">Pricing</a>
           <a href="#faq" className="hover:-translate-y-px transition-transform text-white hover:text-foreground">FAQ</a>
           <Link to="/consultation" className="btn-magnetic bg-accent text-background px-6 py-2.5 rounded-full hover:-translate-y-px transition-all">
@@ -75,8 +75,8 @@ const Navbar = () => {
 
         <div className="flex flex-col items-center gap-10 text-3xl font-sans font-bold text-white">
           <a href="#services" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-accent transition-colors">Services</a>
-          <a href="#proof" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-accent transition-colors">Testimonials</a>
           <a href="#method" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-accent transition-colors">Method</a>
+          <a href="#proof" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-accent transition-colors">Testimonials</a>
           <a href="#pricing" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-accent transition-colors">Pricing</a>
           <a href="#faq" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-accent transition-colors">FAQ</a>
           <Link to="/consultation" onClick={() => setIsMobileMenuOpen(false)} className="mt-4 bg-accent text-background px-8 py-4 rounded-2xl hover:scale-[1.03] transition-transform text-xl uppercase tracking-wider text-black">
@@ -851,8 +851,8 @@ const Footer = () => {
           <h4 className="font-mono text-accent text-sm mb-6">INDEX</h4>
           <ul className="space-y-3 text-white text-sm font-medium">
             <li><a href="#services" className="hover:text-foreground transition-colors">Services</a></li>
-            <li><a href="#proof" className="hover:text-foreground transition-colors">Testimonials</a></li>
             <li><a href="#method" className="hover:text-foreground transition-colors">Method</a></li>
+            <li><a href="#proof" className="hover:text-foreground transition-colors">Testimonials</a></li>
             <li><a href="#pricing" className="hover:text-foreground transition-colors">Pricing</a></li>
             <li><a href="#faq" className="hover:text-foreground transition-colors">FAQ</a></li>
             <li><Link to="/founders-story" className="hover:text-foreground transition-colors">Founder's Story</Link></li>
@@ -888,9 +888,8 @@ const Home = () => {
       <Navbar />
       <Hero />
       <Features />
-      <About />
-      <Testimonials />
       <Protocol />
+      <Testimonials />
       <Pricing />
       <FAQ />
       <CTA />
