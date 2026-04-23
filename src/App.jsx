@@ -8,6 +8,7 @@ import PrivacyPolicy from './Legal';
 import ServiceTerms from './ServiceTerms';
 import ComingSoon from './ComingSoon';
 import ServiceDetail from './ServiceDetail';
+import FoundersStory from './FoundersStory';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -673,6 +674,7 @@ const Footer = () => {
             <li><a href="#services" className="hover:text-foreground transition-colors">Services</a></li>
             <li><a href="#method" className="hover:text-foreground transition-colors">Method</a></li>
             <li><a href="#pricing" className="hover:text-foreground transition-colors">Pricing</a></li>
+            <li><Link to="/founders-story" className="hover:text-foreground transition-colors">Founder's Story</Link></li>
             <li><Link to="/consultation" className="hover:text-foreground transition-colors">Contact</Link></li>
           </ul>
         </div>
@@ -685,7 +687,11 @@ const Footer = () => {
         </div>
       </div>
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between mt-8">
-        <p className="text-white text-xs font-mono mb-4 md:mb-0">© {new Date().getFullYear()} vaultt. All systems operational.</p>
+        <div className="flex flex-col md:flex-row items-center gap-4">
+          <p className="text-white text-xs font-mono mb-4 md:mb-0">© {new Date().getFullYear()} vaultt. All systems operational.</p>
+          <div className="hidden md:block w-px h-3 bg-muted/40" />
+          <p className="text-white/40 text-[10px] font-mono uppercase tracking-widest">Founder's Story</p>
+        </div>
         <div className="flex items-center gap-3 bg-surface px-4 py-2 rounded-full border border-muted/30">
           <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
           <span className="font-mono text-xs text-white">SYSTEM OPERATIONAL</span>
@@ -720,6 +726,7 @@ function App() {
         <Route path="/terms" element={<ServiceTerms />} />
         <Route path="/coming-soon" element={<ComingSoon />} />
         <Route path="/services/:slug" element={<ServiceDetail />} />
+        <Route path="/founders-story" element={<FoundersStory />} />
       </Routes>
     </Router>
   );
