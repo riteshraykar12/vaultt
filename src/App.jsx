@@ -42,6 +42,7 @@ const Navbar = () => {
         
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8 text-sm font-medium">
+          <a href="#about" className="hover:-translate-y-px transition-transform text-white hover:text-foreground">About</a>
           <a href="#services" className="hover:-translate-y-px transition-transform text-white hover:text-foreground">Services</a>
           <a href="#method" className="hover:-translate-y-px transition-transform text-white hover:text-foreground">Method</a>
           <a href="#pricing" className="hover:-translate-y-px transition-transform text-white hover:text-foreground">Pricing</a>
@@ -74,6 +75,7 @@ const Navbar = () => {
         </button>
         
         <div className="flex flex-col items-center gap-10 text-3xl font-sans font-bold text-white">
+          <a href="#about" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-accent transition-colors">About</a>
           <a href="#services" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-accent transition-colors">Services</a>
           <a href="#method" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-accent transition-colors">Method</a>
           <a href="#pricing" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-accent transition-colors">Pricing</a>
@@ -372,6 +374,119 @@ const Features = () => {
           <TypewriterCard />
           <SchedulerCard />
           <AiAutomationCard />
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// --- ABOUT ---
+const About = () => {
+  const aboutRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from('.about-anim', {
+        scrollTrigger: {
+          trigger: aboutRef.current,
+          start: 'top 80%',
+        },
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.15,
+        ease: 'power3.out'
+      });
+    }, aboutRef);
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section id="about" ref={aboutRef} className="py-32 px-6 lg:px-20 bg-background relative z-10 overflow-hidden">
+      <div className="max-w-5xl mx-auto">
+        <div className="about-anim inline-block bg-accent/10 border border-accent/30 rounded-full px-4 py-1.5 mb-8">
+          <span className="font-mono text-xs text-accent uppercase tracking-[0.2em]">The Mission</span>
+        </div>
+        <h2 className="about-anim text-4xl lg:text-7xl font-sans font-bold leading-tight mb-10">
+          We don't just build websites. 
+          <br />
+          <span className="font-drama italic text-accent font-light">We engineer impact.</span>
+        </h2>
+        <div className="grid md:grid-cols-2 gap-12 items-end">
+          <p className="about-anim text-lg lg:text-xl text-white/70 font-mono leading-relaxed">
+            vaultt. was founded on the principle that digital presence should be a digital instrument. Every pixel, every line of code, and every automation is a deliberate move towards your growth. We focus on technical precision and creative obsession.
+          </p>
+          <div className="about-anim">
+            <Link to="/founders-story" className="inline-flex items-center gap-3 text-accent hover:gap-5 transition-all font-mono text-sm uppercase tracking-[0.1em]">
+              READ THE FOUNDER'S STORY <ArrowRight size={18} />
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// --- TESTIMONIALS (Horizontal Scroll) ---
+const Testimonials = () => {
+  const sectionRef = useRef(null);
+  const triggerRef = useRef(null);
+
+  const reviews = [
+    { name: "Sarah L.", role: "E-com Founder", text: "The speed and precision vaultt. brought to our landing page was unmatched. Our conversion rates spiked by 40% in the first week." },
+    { name: "Mark T.", role: "SaaS CEO", text: "Finally an agency that speaks the language of growth, not just design jargon. They delivered a conversion machine." },
+    { name: "Elena R.", role: "Lifestyle Creator", text: "They didn't just build a website; they built a brand identity that feels intentional and premium. Truly bespoke work." },
+    { name: "David K.", role: "Ops Director", text: "The automation workflows they built saved our team 20+ hours a week. It's like having a silent growth partner." },
+    { name: "Julian M.", role: "Tech Lead", text: "The cleanest React architecture I've seen from an agency. Performance is 100/100 across the board." }
+  ];
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Create a smooth horizontal scroll effect
+      const pin = gsap.to(sectionRef.current, {
+        x: () => -(sectionRef.current.scrollWidth - window.innerWidth + (window.innerWidth > 1024 ? 160 : 40)),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: triggerRef.current,
+          pin: true,
+          scrub: 1,
+          start: 'top top',
+          end: () => `+=${sectionRef.current.scrollWidth}`,
+          invalidateOnRefresh: true,
+        }
+      });
+      return () => pin.kill();
+    }, triggerRef);
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section className="overflow-hidden bg-[#111317]">
+      <div ref={triggerRef} className="min-h-screen flex flex-col justify-center">
+        <div className="px-6 lg:px-20 mb-16">
+          <span className="font-mono text-accent text-xs tracking-[0.3em] uppercase block mb-4">Social Proof</span>
+          <h2 className="text-4xl lg:text-6xl font-sans font-bold text-foreground">
+            Wall of <span className="font-drama italic text-accent font-light">Proof.</span>
+          </h2>
+        </div>
+        
+        <div ref={sectionRef} className="flex gap-8 px-6 lg:px-20 will-change-transform">
+          {reviews.map((rev, i) => (
+            <div key={i} className="w-[350px] md:w-[450px] shrink-0 bg-surface rounded-[2.5rem] p-8 md:p-12 border border-muted/30 flex flex-col justify-between h-[400px] md:h-[500px] shadow-2xl relative group hover:border-accent/30 transition-colors">
+              <div className="absolute top-10 right-10 opacity-10 group-hover:opacity-20 transition-opacity">
+                <CheckCircle2 size={60} className="text-accent" />
+              </div>
+              <p className="text-xl md:text-2xl font-sans font-medium text-white italic leading-relaxed">
+                "{rev.text}"
+              </p>
+              <div>
+                <h4 className="font-sans font-bold text-xl text-accent mb-1">{rev.name}</h4>
+                <p className="font-mono text-[10px] text-white/50 uppercase tracking-[0.2em]">{rev.role}</p>
+              </div>
+            </div>
+          ))}
+          {/* Extra spacer for end of scroll */}
+          <div className="w-20 shrink-0" />
         </div>
       </div>
     </section>
@@ -797,6 +912,7 @@ const Footer = () => {
         <div>
           <h4 className="font-mono text-accent text-sm mb-6">INDEX</h4>
           <ul className="space-y-3 text-white text-sm font-medium">
+            <li><a href="#about" className="hover:text-foreground transition-colors">About</a></li>
             <li><a href="#services" className="hover:text-foreground transition-colors">Services</a></li>
             <li><a href="#method" className="hover:text-foreground transition-colors">Method</a></li>
             <li><a href="#pricing" className="hover:text-foreground transition-colors">Pricing</a></li>
@@ -834,6 +950,8 @@ const Home = () => {
       <Navbar />
       <Hero />
       <Features />
+      <About />
+      <Testimonials />
       <Philosophy />
       <Protocol />
       <Pricing />
