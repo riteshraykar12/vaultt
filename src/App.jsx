@@ -430,9 +430,21 @@ const About = () => {
 // --- TESTIMONIALS (Static Grid) ---
 const Testimonials = () => {
   const reviews = [
-    { name: "Sarah L.", role: "E-com Founder", text: "The speed and precision vaultt. brought to our landing page was unmatched. Our conversion rates spiked by 40% in the first week." },
-    { name: "Mark T.", role: "SaaS CEO", text: "Finally an agency that speaks the language of growth, not just design jargon. They delivered a conversion machine." },
-    { name: "Elena R.", role: "Lifestyle Creator", text: "They didn't just build a website; they built a brand identity that feels intentional and premium. Truly bespoke work." }
+    { 
+      name: "Team VeloCT", 
+      role: "VeloCT Gaming Cafe", 
+      text: "Working with Vaultt Agency has completely upgraded how our brand looks and feels. As a gaming café, aesthetics and engagement matter a lot and they absolutely nailed both. From our social media presence to visual branding, everything now resonates with our audience. We've seen a noticeable increase in footfall and online engagement. Highly recommended for anyone looking to stand out in a competitive space." 
+    },
+    { 
+      name: "Adv. Ashwini Vernekar", 
+      role: "Legal Consultant", 
+      text: "Vaultt Agency brought a level of clarity and professionalism to my brand that truly reflects the nature of legal services. Their approach was structured, detail oriented, and aligned perfectly with my requirements. From content to design, everything was handled with precision. I now have a strong and credible online presence that builds trust with my clients." 
+    },
+    { 
+      name: "Mrs. Mrunalini Raykar", 
+      role: "HR Consultant", 
+      text: "Vaultt Agency understands how to communicate value in a simple yet powerful way. As an HR consultant, it was important for me to present my services clearly and professionally and they delivered exactly that. Their content strategy and design approach helped me connect better with my audience. It's been a smooth and impactful collaboration." 
+    }
   ];
 
   return (
