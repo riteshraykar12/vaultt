@@ -39,7 +39,7 @@ const Navbar = () => {
     <>
       <nav ref={navRef} className="fixed top-6 left-1/2 -translate-x-1/2 z-50 px-8 py-4 rounded-full border border-transparent transition-all flex items-center justify-between w-[90%] max-w-5xl text-foreground">
         <div className="font-sans font-bold text-xl tracking-tight text-accent">vaultt.</div>
-        
+
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8 text-sm font-medium">
           <a href="#about" className="hover:-translate-y-px transition-transform text-white hover:text-foreground">About</a>
@@ -53,7 +53,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Hamburger Icon */}
-        <button 
+        <button
           className="md:hidden text-white hover:text-accent transition-colors"
           onClick={() => setIsMobileMenuOpen(true)}
         >
@@ -62,18 +62,17 @@ const Navbar = () => {
       </nav>
 
       {/* Mobile Menu Overlay */}
-      <div 
-        className={`fixed inset-0 z-[60] bg-background/95 backdrop-blur-2xl transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col justify-center items-center ${
-          isMobileMenuOpen ? 'opacity-100 pointer-events-auto translate-x-0' : 'opacity-0 pointer-events-none translate-x-[100%]'
-        }`}
+      <div
+        className={`fixed inset-0 z-[60] bg-background/95 backdrop-blur-2xl transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col justify-center items-center ${isMobileMenuOpen ? 'opacity-100 pointer-events-auto translate-x-0' : 'opacity-0 pointer-events-none translate-x-[100%]'
+          }`}
       >
-        <button 
+        <button
           className="absolute top-8 right-8 text-white hover:text-accent transition-colors"
           onClick={() => setIsMobileMenuOpen(false)}
         >
           <X size={36} />
         </button>
-        
+
         <div className="flex flex-col items-center gap-10 text-3xl font-sans font-bold text-white">
           <a href="#about" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-accent transition-colors">About</a>
           <a href="#services" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-accent transition-colors">Services</a>
@@ -310,7 +309,7 @@ const SchedulerCard = () => {
 
 const AiAutomationCard = () => {
   const nodesRef = useRef([]);
-  
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.to(nodesRef.current, {
@@ -342,15 +341,15 @@ const AiAutomationCard = () => {
         </div>
       </div>
       <p className="text-white text-sm mb-auto">Intelligent agentic systems deployed to eliminate manual redundancy and exponentially scale your operational bandwidth.</p>
-      
+
       <div className="mt-6 relative border border-muted/50 rounded-xl p-4 bg-background h-32 overflow-hidden flex items-center justify-center">
         <svg className="absolute inset-0 w-full h-full opacity-20" preserveAspectRatio="none">
           <path d="M 20 20 L 50 50 L 80 20 M 20 80 L 50 50 L 80 80" fill="none" stroke="#F8E84F" strokeWidth="1" strokeDasharray="4,4" className="animate-[pulse_3s_infinite]" />
         </svg>
         <div className="grid grid-cols-5 gap-4 w-full h-full relative z-10 place-items-center">
           {Array.from({ length: 15 }).map((_, i) => (
-            <div 
-              key={i} 
+            <div
+              key={i}
               ref={el => nodesRef.current[i] = el}
               className="w-2 h-2 rounded-full bg-accent shadow-[0_0_8px_rgba(248,232,79,0.8)]"
             />
@@ -408,7 +407,7 @@ const About = () => {
           <span className="font-mono text-xs text-accent uppercase tracking-[0.2em]">The Mission</span>
         </div>
         <h2 className="about-anim text-4xl lg:text-7xl font-sans font-bold leading-tight mb-10">
-          We don't just build websites. 
+          We don't just build websites.
           <br />
           <span className="font-drama italic text-accent font-light">We engineer impact.</span>
         </h2>
@@ -430,20 +429,20 @@ const About = () => {
 // --- TESTIMONIALS (Static Grid) ---
 const Testimonials = () => {
   const reviews = [
-    { 
-      name: "Team VeloCT", 
-      role: "VeloCT Gaming Cafe", 
-      text: "Working with Vaultt Agency has completely upgraded how our brand looks and feels. As a gaming café, aesthetics and engagement matter a lot and they absolutely nailed both. From our social media presence to visual branding, everything now resonates with our audience. We've seen a noticeable increase in footfall and online engagement. Highly recommended for anyone looking to stand out in a competitive space." 
+    {
+      name: "Team VeloCT",
+      role: "VeloCT Arena",
+      text: "Working with Vaultt Agency has completely upgraded how our brand looks and feels. As a gaming café, aesthetics and engagement matter a lot and they absolutely nailed both. From our social media presence to visual branding, everything now resonates with our audience. We've seen a noticeable increase in footfall and online engagement. Highly recommended for anyone looking to stand out in a competitive space."
     },
-    { 
-      name: "Adv. Ashwini Vernekar", 
-      role: "Legal Consultant", 
-      text: "Vaultt Agency brought a level of clarity and professionalism to my brand that truly reflects the nature of legal services. Their approach was structured, detail oriented, and aligned perfectly with my requirements. From content to design, everything was handled with precision. I now have a strong and credible online presence that builds trust with my clients." 
+    {
+      name: "Adv. Ashwini Vernekar",
+      role: "Legal Consultant",
+      text: "Vaultt Agency brought a level of clarity and professionalism to my brand that truly reflects the nature of legal services. Their approach was structured, detail oriented, and aligned perfectly with my requirements. From content to design, everything was handled with precision. I now have a strong and credible online presence that builds trust with my clients."
     },
-    { 
-      name: "Mrs. Mrunalini Raykar", 
-      role: "HR Consultant", 
-      text: "Vaultt Agency understands how to communicate value in a simple yet powerful way. As an HR consultant, it was important for me to present my services clearly and professionally and they delivered exactly that. Their content strategy and design approach helped me connect better with my audience. It's been a smooth and impactful collaboration." 
+    {
+      name: "Mrs. Mrunalini Raykar",
+      role: "HR Consultant",
+      text: "Vaultt Agency understands how to communicate value in a simple yet powerful way. As an HR consultant, it was important for me to present my services clearly and professionally and they delivered exactly that. Their content strategy and design approach helped me connect better with my audience. It's been a smooth and impactful collaboration."
     }
   ];
 
@@ -456,7 +455,7 @@ const Testimonials = () => {
             Wall of <span className="font-drama italic text-accent font-light">Proof.</span>
           </h2>
         </div>
-        
+
         <div className="grid lg:grid-cols-3 gap-8">
           {reviews.map((rev, i) => (
             <div key={i} className="bg-surface rounded-[2.5rem] p-8 md:p-12 border border-muted/30 flex flex-col justify-between shadow-2xl relative group hover:border-accent/30 transition-all hover:-translate-y-2">
@@ -870,7 +869,7 @@ const Footer = () => {
           <div className="flex items-center gap-4">
             <a href="/coming-soon" className="w-10 h-10 rounded-full bg-surface border border-muted/50 flex items-center justify-center text-white hover:text-accent hover:border-accent hover:-translate-y-1 transition-all" aria-label="X (Twitter)">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
               </svg>
             </a>
             <a href="https://www.instagram.com/vaultt.studios/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-surface border border-muted/50 flex items-center justify-center text-white hover:text-accent hover:border-accent hover:-translate-y-1 transition-all" aria-label="Instagram">
