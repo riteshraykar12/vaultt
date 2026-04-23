@@ -435,9 +435,7 @@ const Testimonials = () => {
   const reviews = [
     { name: "Sarah L.", role: "E-com Founder", text: "The speed and precision vaultt. brought to our landing page was unmatched. Our conversion rates spiked by 40% in the first week." },
     { name: "Mark T.", role: "SaaS CEO", text: "Finally an agency that speaks the language of growth, not just design jargon. They delivered a conversion machine." },
-    { name: "Elena R.", role: "Lifestyle Creator", text: "They didn't just build a website; they built a brand identity that feels intentional and premium. Truly bespoke work." },
-    { name: "David K.", role: "Ops Director", text: "The automation workflows they built saved our team 20+ hours a week. It's like having a silent growth partner." },
-    { name: "Julian M.", role: "Tech Lead", text: "The cleanest React architecture I've seen from an agency. Performance is 100/100 across the board." }
+    { name: "Elena R.", role: "Lifestyle Creator", text: "They didn't just build a website; they built a brand identity that feels intentional and premium. Truly bespoke work." }
   ];
 
   useEffect(() => {
