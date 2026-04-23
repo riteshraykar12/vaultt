@@ -14,7 +14,7 @@ const serviceData = {
     tagline: 'Engineered for conversion.',
     heroLine1: 'Architecture is the',
     heroLine2: 'Foundation.',
-    description: 'We build scalable digital infrastructure — not templates. Every line of code is purposeful, every interaction designed to convert visitors into clients.',
+    description: 'We build scalable digital infrastructure not templates. Every line of code is purposeful, every interaction designed to convert visitors into clients.',
     stats: [
       { value: '99.9%', label: 'Uptime Guarantee' },
       { value: '<1.2s', label: 'Avg. Load Time' },
@@ -22,14 +22,14 @@ const serviceData = {
       { value: '100%', label: 'Responsive' },
     ],
     process: [
-      { step: '01', title: 'Discovery & Wireframing', desc: 'Deep-dive into your brand DNA, user personas, and conversion goals. We map every interaction before writing a single line of code.', icon: Layers },
+      { step: '01', title: 'Discovery & Wireframing', desc: 'Deep dive into your brand DNA, user personas, and conversion goals. We map every interaction before writing a single line of code.', icon: Layers },
       { step: '02', title: 'UI/UX Design', desc: 'Pixel-perfect mockups with micro-interaction specifications. Every hover state, every transition — pre-visualized.', icon: Sparkles },
-      { step: '03', title: 'Development Sprint', desc: 'React, Next.js, or custom stack — built with modern frameworks, optimized for Core Web Vitals and SEO from day one.', icon: Code },
+      { step: '03', title: 'Development Sprint', desc: 'React, Next.js, or custom stack built with modern frameworks, optimized for Core Web Vitals and SEO from day one.', icon: Code },
       { step: '04', title: 'QA & Launch', desc: 'Cross-browser testing, performance audits, accessibility compliance. Then: deployment to blazing-fast edge infrastructure.', icon: Shield },
     ],
     deliverables: [
       'Custom React / Next.js Application',
-      'Mobile-First Responsive Design',
+      'Mobile First Responsive Design',
       'SEO & Core Web Vitals Optimization',
       'CMS Integration (if needed)',
       'Analytics & Conversion Tracking',
@@ -42,25 +42,25 @@ const serviceData = {
   'social-media': {
     icon: Activity,
     title: 'Social Media Management',
-    tagline: 'Data-driven amplification.',
+    tagline: 'Data driven amplification.',
     heroLine1: 'Engagement is the',
     heroLine2: 'Currency.',
-    description: 'We don\'t just post — we deploy strategic content systems that generate measurable growth, audience loyalty, and brand authority across every platform.',
+    description: 'We don\'t just post we deploy strategic content systems that generate measurable growth, audience loyalty, and brand authority across every platform.',
     stats: [
       { value: '280%', label: 'Avg. Reach Growth' },
       { value: '4.8x', label: 'Engagement Rate' },
-      { value: '12-15', label: 'Posts / Month' },
+      { value: '12 15', label: 'Posts / Month' },
       { value: '24/7', label: 'Monitoring' },
     ],
     process: [
       { step: '01', title: 'Audience Intelligence', desc: 'We analyze your target demographics, competitor strategies, and platform algorithms to build a precision content map.', icon: Users },
-      { step: '02', title: 'Content Production', desc: 'Static posts, reels, carousels, stories — each asset crafted with platform-native best practices and brand consistency.', icon: Sparkles },
+      { step: '02', title: 'Content Production', desc: 'Static posts, reels, carousels, stories each asset crafted with platform native best practices and brand consistency.', icon: Sparkles },
       { step: '03', title: 'Strategic Publishing', desc: 'Timed to algorithmic peaks. A/B tested hooks. Hashtag engineering. Every post is a calculated move.', icon: Clock },
       { step: '04', title: 'Analytics & Iteration', desc: 'Monthly performance reports with actionable insights. We double down on what works and pivot from what doesn\'t.', icon: BarChart3 },
     ],
     deliverables: [
       'Monthly Content Calendar',
-      '12-15 Posts (Static + Reels)',
+      '12 15 Posts (Static + Reels)',
       'Carousel & Story Design',
       'Copywriting (Captions + Hooks)',
       'Hashtag & Trend Research',
@@ -86,12 +86,12 @@ const serviceData = {
     process: [
       { step: '01', title: 'Brand Voice Mapping', desc: 'We decode your tone, personality, and audience language to create a voice guide that ensures every piece sounds unmistakably you.', icon: Users },
       { step: '02', title: 'Content Strategy', desc: 'Keyword research, topic clustering, and editorial calendar — engineered for SEO dominance and audience relevance.', icon: TrendingUp },
-      { step: '03', title: 'Writing & Editing', desc: 'Long-form blogs, website copy, email sequences, ad copy — written by humans, refined through multiple editorial passes.', icon: Terminal },
+      { step: '03', title: 'Writing & Editing', desc: 'Long-form blogs, website copy, email sequences, ad copy written by humans, refined through multiple editorial passes.', icon: Terminal },
       { step: '04', title: 'Publish & Measure', desc: 'Strategic scheduling with performance tracking. We measure read time, bounce rate, and conversion to continuously optimize.', icon: BarChart3 },
     ],
     deliverables: [
       'Website Copy & Landing Pages',
-      'Blog Posts & Articles (SEO-Optimized)',
+      'Blog Posts & Articles (SEO Optimized)',
       'Email Marketing Sequences',
       'Social Media Captions',
       'Ad Copy (Meta, Google)',
@@ -107,7 +107,7 @@ const serviceData = {
     tagline: 'Eliminate redundancy.',
     heroLine1: 'Intelligence beyond',
     heroLine2: 'Manual.',
-    description: 'Agentic AI systems deployed to automate repetitive tasks, streamline operations, and exponentially scale your bandwidth — without adding headcount.',
+    description: 'Agentic AI systems deployed to automate repetitive tasks, streamline operations, and exponentially scale your bandwidth without adding headcount.',
     stats: [
       { value: '80%', label: 'Task Automation' },
       { value: '10x', label: 'Efficiency Gain' },
@@ -117,7 +117,7 @@ const serviceData = {
     process: [
       { step: '01', title: 'Workflow Audit', desc: 'We map your entire operational workflow to identify bottlenecks, repetitive tasks, and automation opportunities.', icon: Layers },
       { step: '02', title: 'System Design', desc: 'Custom AI agent architecture — integrating LLMs, APIs, and triggers tailored to your specific business logic.', icon: Cpu },
-      { step: '03', title: 'Build & Deploy', desc: 'From WhatsApp bots to CRM automations, lead funnels to chatbots — built, tested, and deployed to production.', icon: Zap },
+      { step: '03', title: 'Build & Deploy', desc: 'From WhatsApp bots to CRM automations, lead funnels to chatbots built, tested, and deployed to production.', icon: Zap },
       { step: '04', title: 'Monitor & Scale', desc: 'Real-time dashboards, error handling, and continuous optimization. Your systems get smarter over time.', icon: TrendingUp },
     ],
     deliverables: [
@@ -127,7 +127,7 @@ const serviceData = {
       'CRM Pipeline Setup',
       'Email Sequence Automation',
       'Custom API Integrations',
-      'Real-Time Analytics Dashboard',
+      'Real Time Analytics Dashboard',
       'Ongoing Maintenance & Support',
     ],
     techStack: ['OpenAI', 'Make.com', 'Zapier', 'Twilio', 'Python', 'n8n'],
@@ -345,7 +345,7 @@ const ServiceDetail = () => {
                 Deliverables<span className="text-accent">.</span>
               </h2>
               <p className="text-white/70 text-sm lg:text-base leading-relaxed mb-8">
-                Every engagement comes with a full suite of deliverables — no hidden costs, no ambiguity. Here's exactly what's included.
+                Every engagement comes with a full suite of deliverables no hidden costs, no ambiguity. Here's exactly what's included.
               </p>
 
               {/* Tech stack pills */}

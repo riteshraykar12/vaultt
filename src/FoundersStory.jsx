@@ -119,7 +119,7 @@ const FoundersStory = () => {
             </span>
           </h1>
           <p className="fs-hero-anim text-base lg:text-lg text-white/70 font-mono max-w-2xl">
-            Vaultt didn’t start as an agency. It started as a frustration. A frustration with how most businesses were being “helped” online—pretty designs with no conversions, content with no strategy, and marketing that looked good but did nothing.
+            Vaultt didn’t start as an agency. It started as a frustration. A frustration with how most businesses were being “helped” online pretty designs with no conversions, content with no strategy, and marketing that looked good but did nothing.
           </p>
         </div>
       </section>
@@ -160,7 +160,7 @@ const FoundersStory = () => {
                 </p>
                 <p>
                   Not just strategy decks. Not just ideas. But real systems that drive growth.
-                  In the early days, we worked closely with small businesses and startups—understanding their bottlenecks, fixing their foundations, and building digital assets that actually performed.
+                  In the early days, we worked closely with small businesses and startups understanding their bottlenecks, fixing their foundations, and building digital assets that actually performed.
                 </p>
                 <p>
                   We didn’t aim to be the biggest agency. We aimed to be the most effective one.
@@ -186,7 +186,7 @@ const FoundersStory = () => {
                   Too many tools. Too many freelancers. Too many disconnected strategies.
                 </p>
                 <p>
-                  So Vaultt evolved. From a service provider → to a growth partner. From doing tasks → to building systems.
+                  So Vaultt evolved. From a service provider to a growth partner. From doing tasks to building systems.
                   We started combining Website development, Content strategy, Social media execution, and Automation into one unified growth engine.
                 </p>
                 <p className="text-accent font-medium italic">
@@ -232,7 +232,7 @@ const FoundersStory = () => {
               </h2>
               <div className="grid md:grid-cols-2 gap-8 text-white/75 font-sans">
                 <div className="space-y-4">
-                  <div className="text-accent font-mono text-sm uppercase tracking-wider">01 Data-backed</div>
+                  <div className="text-accent font-mono text-sm uppercase tracking-wider">01 Data backed</div>
                   <p className="text-sm lg:text-base">Every decision has a reason and is supported by telemetry.</p>
                 </div>
                 <div className="space-y-4">
@@ -240,7 +240,7 @@ const FoundersStory = () => {
                   <p className="text-sm lg:text-base">No unnecessary complexity. Just what works.</p>
                 </div>
                 <div className="space-y-4">
-                  <div className="text-accent font-mono text-sm uppercase tracking-wider">03 Execution-first</div>
+                  <div className="text-accent font-mono text-sm uppercase tracking-wider">03 Execution first</div>
                   <p className="text-sm lg:text-base">Speed over perfection. We ship and iterate.</p>
                 </div>
                 <div className="space-y-4">
@@ -282,10 +282,10 @@ const FoundersStory = () => {
               </h2>
               <div className="space-y-6 text-white/75 text-base lg:text-lg leading-relaxed font-sans">
                 <p>
-                  We’re building Vaultt to become more than an agency. A system. A growth infrastructure. A vault of scalable digital assets. A place where businesses don’t just operate—they compound.
+                  We’re building Vaultt to become more than an agency. A system. A growth infrastructure. A vault of scalable digital assets. A place where businesses don’t just operate they compound.
                 </p>
                 <p>
-                  As businesses evolve, so will Vaultt—integrating deeper automation, smarter systems, and stronger growth frameworks. The goal isn’t short-term wins. It’s building brands that sustain, scale, and dominate.
+                  As businesses evolve, so will Vaultt integrating deeper automation, smarter systems, and stronger growth frameworks. The goal isn’t short term wins. It’s building brands that sustain, scale, and dominate.
                 </p>
               </div>
             </div>
@@ -321,7 +321,7 @@ const FoundersStory = () => {
               </span>
             </div>
             <blockquote className="text-2xl sm:text-3xl lg:text-5xl font-drama italic text-foreground leading-snug mb-12">
-              "If you’re building something real—<br />
+              "If you’re building something real<br />
               <span className="text-accent">Vaultt is built for you.</span>"
             </blockquote>
             <Link

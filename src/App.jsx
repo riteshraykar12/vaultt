@@ -571,7 +571,7 @@ const Pricing = () => {
             isPopular={true}
             features={[
               "Content Calendar",
-              "12–15 Posts (Static + Reels)",
+              "12 15 Posts (Static + Reels)",
               "Video Editing",
               "Carousel Design",
               "Copywriting (Captions + Hooks)",
@@ -590,7 +590,7 @@ const Pricing = () => {
               "WhatsApp Automation",
               "Instagram + Facebook Automation",
               "Google Business Optimization",
-              "Landing Pages (2–3)",
+              "Landing Pages (2 3)",
               "Website Chatbot Integration",
               "Lead Funnel Setup",
               "Basic SEO Setup"
@@ -604,7 +604,7 @@ const Pricing = () => {
             subtitle="Tailored solution made just for your business needs"
             features={[
               "Requirements-Based Planning",
-              "1-on-1 Strategy Consultation",
+              "1 on 1 Strategy Consultation",
               "Custom Website / Funnel Development",
               "Personalized Content Strategy",
               "Platform-Specific Growth Plan",
