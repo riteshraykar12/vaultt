@@ -476,53 +476,7 @@ const Testimonials = () => {
     </section>
   );
 };
-
-// --- PHILOSOPHY ---
-const Philosophy = () => {
-  const philRef = useRef(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from('.phil-line', {
-        scrollTrigger: {
-          trigger: philRef.current,
-          start: 'top 70%',
-        },
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.2,
-        ease: 'power3.out'
-      });
-    }, philRef);
-    return () => ctx.revert();
-  }, []);
-
-  return (
-    <section ref={philRef} className="py-40 px-6 lg:px-20 relative overflow-hidden bg-[#111317]">
-      <div className="absolute inset-0 z-0 opacity-10">
-        <img
-          src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2000&auto=format&fit=crop"
-          alt="Abstract Texture"
-          className="w-full h-full object-cover object-center"
-        />
-      </div>
-      <div className="max-w-5xl mx-auto relative z-10 text-center">
-        <p className="phil-line text-xl lg:text-2xl text-white font-sans mb-8">
-          Most agencies focus on: generic templates.
-        </p>
-        <p className="phil-line text-4xl lg:text-7xl font-sans font-bold leading-tight text-foreground">
-          We focus on: <span className="font-drama italic text-accent font-light">bespoke impact.</span>
-        </p>
-        <div className="phil-line mt-12">
-          <Link to="/founders-story" className="btn-magnetic bg-accent text-background px-8 py-4 text-lg">
-            <span>Read our Founder's Story</span>
-          </Link>
-        </div>
-      </div>
-    </section>
-  );
-};
+;
 
 // --- PROTOCOL ---
 const ProtocolCard = ({ index, title, description, Icon }) => {
@@ -936,7 +890,6 @@ const Home = () => {
       <Features />
       <About />
       <Testimonials />
-      <Philosophy />
       <Protocol />
       <Pricing />
       <FAQ />
