@@ -413,6 +413,11 @@ const Philosophy = () => {
         <p className="phil-line text-4xl lg:text-7xl font-sans font-bold leading-tight text-foreground">
           We focus on: <span className="font-drama italic text-accent font-light">bespoke impact.</span>
         </p>
+        <div className="phil-line mt-12">
+          <Link to="/founders-story" className="btn-magnetic bg-accent text-background px-8 py-4 text-lg">
+            <span>Read our Founder's Story</span>
+          </Link>
+        </div>
       </div>
     </section>
   );
