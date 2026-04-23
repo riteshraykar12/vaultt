@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowRight, Check, CheckCircle2, ChevronRight, Activity, Terminal, Calendar, Code, Hexagon, Menu, X } from 'lucide-react';
+import { ArrowRight, Check, CheckCircle2, ChevronRight, Activity, Terminal, Calendar, Code, Hexagon, Menu, X, Plus, Minus, ChevronDown } from 'lucide-react';
 import ConsultationForm from './ConsultationForm';
 import PrivacyPolicy from './Legal';
 import ServiceTerms from './ServiceTerms';
@@ -45,6 +45,7 @@ const Navbar = () => {
           <a href="#services" className="hover:-translate-y-px transition-transform text-white hover:text-foreground">Services</a>
           <a href="#method" className="hover:-translate-y-px transition-transform text-white hover:text-foreground">Method</a>
           <a href="#pricing" className="hover:-translate-y-px transition-transform text-white hover:text-foreground">Pricing</a>
+          <a href="#faq" className="hover:-translate-y-px transition-transform text-white hover:text-foreground">FAQ</a>
           <Link to="/consultation" className="btn-magnetic bg-accent text-background px-6 py-2.5 rounded-full hover:-translate-y-px transition-all">
             <span>Book Consultation</span>
           </Link>
@@ -76,6 +77,7 @@ const Navbar = () => {
           <a href="#services" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-accent transition-colors">Services</a>
           <a href="#method" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-accent transition-colors">Method</a>
           <a href="#pricing" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-accent transition-colors">Pricing</a>
+          <a href="#faq" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-accent transition-colors">FAQ</a>
           <Link to="/consultation" onClick={() => setIsMobileMenuOpen(false)} className="mt-4 bg-accent text-background px-8 py-4 rounded-2xl hover:scale-[1.03] transition-transform text-xl uppercase tracking-wider text-black">
             Book Consultation
           </Link>
@@ -620,6 +622,125 @@ const Pricing = () => {
   );
 };
 
+// --- FAQ ---
+const FAQItem = ({ question, answer, isOpen, onClick }) => {
+  const contentRef = useRef(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      gsap.to(contentRef.current, { height: 'auto', opacity: 1, duration: 0.5, ease: 'power2.out' });
+    } else {
+      gsap.to(contentRef.current, { height: 0, opacity: 0, duration: 0.3, ease: 'power2.in' });
+    }
+  }, [isOpen]);
+
+  return (
+    <div className="border-b border-muted/20 py-4">
+      <button
+        onClick={onClick}
+        className="w-full flex items-center justify-between text-left py-4 hover:text-accent transition-colors"
+      >
+        <span className="font-sans font-bold text-xl lg:text-2xl text-foreground">{question}</span>
+        {isOpen ? <Minus size={20} className="text-accent shrink-0" /> : <Plus size={20} className="text-white shrink-0" />}
+      </button>
+      <div ref={contentRef} className="overflow-hidden h-0 opacity-0">
+        <p className="font-mono text-white/70 text-base lg:text-lg pb-6 leading-relaxed max-w-4xl">
+          {answer}
+        </p>
+      </div>
+    </div>
+  );
+};
+
+const FAQ = () => {
+  const [openIndex, setOpenIndex] = useState(0);
+  const faqRef = useRef(null);
+
+  const faqs = [
+    {
+      question: "What does vaultt. actually do?",
+      answer: "We are a creative technology agency that builds growth infrastructure. We combine bespoke web development, data backed social media management, and intelligent automation into one unified engine to scale your brand."
+    },
+    {
+      question: "How long does a typical project take?",
+      answer: "A custom conversion machine (website) typically takes 2 4 weeks. Social media systems are ongoing monthly deployments, and AI automation workflows can be implemented within 10 14 days depending on complexity."
+    },
+    {
+      question: "Do you use templates for websites?",
+      answer: "Never. Every website we build is hand coded from scratch using modern frameworks like React and Next.js. This ensures absolute precision, 100/100 performance scores, and a unique identity that cannot be replicated with a template."
+    },
+    {
+      question: "What industries do you specialize in?",
+      answer: "We work with high growth startups, luxury lifestyle brands, e commerce founders, and professional service providers who value technical excellence and want to stand out in a crowded digital landscape."
+    },
+    {
+      question: "How do you measure social media success?",
+      answer: "We look beyond vanity metrics. We measure 'Attention Velocity' depth of engagement, reach growth, and most importantly, how many of those interactions convert into revenue or leads for your business."
+    },
+    {
+      question: "Can you automate my existing business workflows?",
+      answer: "Absolutely. We conduct a 'Workflow Audit' to find manual bottlenecks and deploy agentic AI systems that handle lead follow ups, scheduling, data entry, and customer support autonomously."
+    },
+    {
+      question: "What tech stack do you use?",
+      answer: "Our core stack includes React, Next.js, Node.js, and GSAP for animations. For automation, we utilize OpenAI, Make.com, and Zapier. We choose tools that offer the highest degree of scalability and performance."
+    },
+    {
+      question: "Do you offer post launch support?",
+      answer: "Yes. Every project includes a transition period with full training. We also offer monthly 'Growth Partnerships' where we continuously optimize your systems, run A/B tests, and scale your infrastructure as you grow."
+    },
+    {
+      question: "Why is bespoke code better than WordPress?",
+      answer: "Speed and security. Bespoke code is up to 10x faster, has zero bloat, and is nearly impossible to hack compared to open source platforms. It also allows for 'Absolute Design Freedom' where your vision isn't limited by a plugin's settings."
+    },
+    {
+      question: "How do we get started?",
+      answer: "The process begins with a Strategic Consultation. We'll audit your current digital footprint and map out a growth blueprint tailored to your operational scale. Click 'Book Consultation' to initiate the protocol."
+    }
+  ];
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from('.faq-anim', {
+        scrollTrigger: {
+          trigger: faqRef.current,
+          start: 'top 80%',
+        },
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.1,
+        ease: 'power3.out'
+      });
+    }, faqRef);
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section id="faq" ref={faqRef} className="py-32 px-6 lg:px-20 bg-background relative z-10">
+      <div className="max-w-5xl mx-auto">
+        <div className="faq-anim mb-16">
+          <span className="font-mono text-accent text-xs tracking-[0.3em] uppercase block mb-4">Intelligence Query</span>
+          <h2 className="text-4xl lg:text-6xl font-sans font-bold text-foreground">
+            Common <span className="font-drama italic text-accent font-light">Questions.</span>
+          </h2>
+        </div>
+        <div className="faq-anim">
+          {faqs.map((faq, i) => (
+            <FAQItem
+              key={i}
+              question={faq.question}
+              answer={faq.answer}
+              isOpen={openIndex === i}
+              onClick={() => setOpenIndex(openIndex === i ? -1 : i)}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 // --- CTA ---
 const CTA = () => {
   return (
@@ -679,6 +800,7 @@ const Footer = () => {
             <li><a href="#services" className="hover:text-foreground transition-colors">Services</a></li>
             <li><a href="#method" className="hover:text-foreground transition-colors">Method</a></li>
             <li><a href="#pricing" className="hover:text-foreground transition-colors">Pricing</a></li>
+            <li><a href="#faq" className="hover:text-foreground transition-colors">FAQ</a></li>
             <li><Link to="/founders-story" className="hover:text-foreground transition-colors">Founder's Story</Link></li>
             <li><Link to="/consultation" className="hover:text-foreground transition-colors">Contact</Link></li>
           </ul>
@@ -715,6 +837,7 @@ const Home = () => {
       <Philosophy />
       <Protocol />
       <Pricing />
+      <FAQ />
       <CTA />
       <Footer />
     </main>
