@@ -427,54 +427,31 @@ const About = () => {
   );
 };
 
-// --- TESTIMONIALS (Horizontal Scroll) ---
+// --- TESTIMONIALS (Static Grid) ---
 const Testimonials = () => {
-  const sectionRef = useRef(null);
-  const triggerRef = useRef(null);
-
   const reviews = [
     { name: "Sarah L.", role: "E-com Founder", text: "The speed and precision vaultt. brought to our landing page was unmatched. Our conversion rates spiked by 40% in the first week." },
     { name: "Mark T.", role: "SaaS CEO", text: "Finally an agency that speaks the language of growth, not just design jargon. They delivered a conversion machine." },
     { name: "Elena R.", role: "Lifestyle Creator", text: "They didn't just build a website; they built a brand identity that feels intentional and premium. Truly bespoke work." }
   ];
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Create a smooth horizontal scroll effect
-      const pin = gsap.to(sectionRef.current, {
-        x: () => -(sectionRef.current.scrollWidth - window.innerWidth + (window.innerWidth > 1024 ? 160 : 40)),
-        ease: 'none',
-        scrollTrigger: {
-          trigger: triggerRef.current,
-          pin: true,
-          scrub: 1,
-          start: 'top top',
-          end: () => `+=${sectionRef.current.scrollWidth}`,
-          invalidateOnRefresh: true,
-        }
-      });
-      return () => pin.kill();
-    }, triggerRef);
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <section className="overflow-hidden bg-[#111317]">
-      <div ref={triggerRef} className="min-h-screen flex flex-col justify-center">
-        <div className="px-6 lg:px-20 mb-16">
+    <section id="proof" className="py-32 px-6 lg:px-20 bg-[#111317] relative z-10">
+      <div className="max-w-7xl mx-auto">
+        <div className="mb-20 text-center">
           <span className="font-mono text-accent text-xs tracking-[0.3em] uppercase block mb-4">Social Proof</span>
           <h2 className="text-4xl lg:text-6xl font-sans font-bold text-foreground">
             Wall of <span className="font-drama italic text-accent font-light">Proof.</span>
           </h2>
         </div>
         
-        <div ref={sectionRef} className="flex gap-8 px-6 lg:px-20 will-change-transform">
+        <div className="grid lg:grid-cols-3 gap-8">
           {reviews.map((rev, i) => (
-            <div key={i} className="w-[350px] md:w-[450px] shrink-0 bg-surface rounded-[2.5rem] p-8 md:p-12 border border-muted/30 flex flex-col justify-between h-[400px] md:h-[500px] shadow-2xl relative group hover:border-accent/30 transition-colors">
-              <div className="absolute top-10 right-10 opacity-10 group-hover:opacity-20 transition-opacity">
-                <CheckCircle2 size={60} className="text-accent" />
+            <div key={i} className="bg-surface rounded-[2.5rem] p-8 md:p-12 border border-muted/30 flex flex-col justify-between shadow-2xl relative group hover:border-accent/30 transition-all hover:-translate-y-2">
+              <div className="absolute top-8 right-8 opacity-10 group-hover:opacity-20 transition-opacity">
+                <CheckCircle2 size={40} className="text-accent" />
               </div>
-              <p className="text-xl md:text-2xl font-sans font-medium text-white italic leading-relaxed">
+              <p className="text-lg md:text-xl font-sans font-medium text-white italic leading-relaxed mb-12">
                 "{rev.text}"
               </p>
               <div>
@@ -483,8 +460,6 @@ const Testimonials = () => {
               </div>
             </div>
           ))}
-          {/* Extra spacer for end of scroll */}
-          <div className="w-20 shrink-0" />
         </div>
       </div>
     </section>
