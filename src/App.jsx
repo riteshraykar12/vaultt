@@ -429,22 +429,34 @@ const About = () => {
 // --- FOUNDERS BRIDGE ---
 const FoundersBridge = () => {
   return (
-    <section className="py-32 px-6 bg-background relative z-10 flex flex-col items-center text-center">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-accent/30 to-transparent"></div>
-      
-      <div className="mb-16">
-        <span className="font-mono text-accent text-xs tracking-[0.3em] uppercase block mb-4">The Narrative</span>
-        <h2 className="text-4xl lg:text-6xl font-sans font-bold text-foreground">
-          Look what our <span className="font-drama italic text-accent font-light">founder</span> has to say.
-        </h2>
+    <section className="relative py-40 px-6 overflow-hidden flex flex-col items-center text-center">
+      {/* Background Image with Parallax effect */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop" 
+          alt="Abstract dark texture" 
+          className="w-full h-full object-cover opacity-30"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/60 to-background" />
       </div>
 
-      <Link to="/founders-story" className="btn-magnetic bg-accent text-background px-10 py-5 rounded-2xl flex items-center gap-4 hover:scale-[1.02] transition-all group shadow-[0_0_30px_rgba(248,232,79,0.15)]">
-        <span className="font-sans font-bold uppercase tracking-wider text-lg">Read Our Founder's Story</span>
-        <div className="w-10 h-10 rounded-full bg-background/10 flex items-center justify-center group-hover:translate-x-1 transition-transform">
-          <ArrowRight size={22} />
+      <div className="relative z-10 w-full max-w-5xl">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-accent/30 to-transparent -translate-y-24"></div>
+        
+        <div className="mb-16">
+          <span className="font-mono text-accent text-xs tracking-[0.3em] uppercase block mb-4">The Narrative</span>
+          <h2 className="text-4xl lg:text-7xl font-sans font-bold text-foreground">
+            Look what our <span className="font-drama italic text-accent font-light">founder</span> has to say.
+          </h2>
         </div>
-      </Link>
+
+        <Link to="/founders-story" className="btn-magnetic bg-accent text-background px-12 py-6 rounded-2xl flex items-center gap-4 hover:scale-[1.03] transition-all group shadow-[0_20px_50px_rgba(248,232,79,0.2)] mx-auto w-fit">
+          <span className="font-sans font-bold uppercase tracking-wider text-xl">Read Our Founder's Story</span>
+          <div className="w-12 h-12 rounded-full bg-background/10 flex items-center justify-center group-hover:translate-x-2 transition-transform">
+            <ArrowRight size={26} />
+          </div>
+        </Link>
+      </div>
     </section>
   );
 };
