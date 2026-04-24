@@ -2,8 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ArrowLeft, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import { z } from 'zod';
 
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzW0IJQ-UWTckf1hReaBVRM5PLi4gOvL4RefLhZngDi3kcUCo3WHn9ML8UlZOMWcis/exec';
+const SCRIPT_URL = import.meta.env.VITE_SCRIPT_URL;
 
 const ConsultationForm = () => {
   const formRef = useRef(null);
@@ -12,6 +13,15 @@ const ConsultationForm = () => {
   
   const [status, setStatus] = useState('idle'); // idle, submitting, success, error
   const [submitted, setSubmitted] = useState(false);
+  const mountTime = useRef(Date.now());
+  const [errors, setErrors] = useState({});
+
+  const consultationSchema = z.object({
+    fullName: z.string().min(2, "Name too short").max(100, "Name too long"),
+    contactNumber: z.string().min(10, "Invalid number").max(20, "Number too long"),
+    email: z.string().email("Invalid email address"),
+    message: z.string().min(10, "Message too short").max(2000, "Message too long"),
+  });
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -29,7 +39,41 @@ const ConsultationForm = () => {
   }, []);
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // Stop React's async rendering from interfering
+    e.preventDefault(); 
+    setErrors({});
+
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+
+    // 1. Honeypot check
+    if (data.website) {
+      console.warn('Bot detected via honeypot.');
+      setStatus('success'); // Silently fail to the bot
+      return;
+    }
+
+    // 2. Timing check (if submitted in < 3 seconds)
+    if (Date.now() - mountTime.current < 3000) {
+      console.warn('Bot detected via timing.');
+      setStatus('success');
+      return;
+    }
+
+    // 3. Throttling check (max 1 submission per 60 seconds)
+    const lastSubmission = localStorage.getItem('vaultt_last_submission');
+    if (lastSubmission && Date.now() - parseInt(lastSubmission) < 60000) {
+      alert("Please wait 60 seconds before submitting again.");
+      return;
+    }
+
+    // 4. Robust Schema Validation
+    const result = consultationSchema.safeParse(data);
+    if (!result.success) {
+      const fieldErrors = result.error.flatten().fieldErrors;
+      setErrors(fieldErrors);
+      setStatus('error');
+      return;
+    }
 
     // Inject the exact local time the button was clicked
     const timeInput = document.getElementById('submissionTime');
@@ -43,9 +87,10 @@ const ConsultationForm = () => {
       packageInput.value = selectedPackage || 'None';
     }
 
-    // Update UI
+    // Update UI and record submission time
     setStatus('submitting');
     setSubmitted(true);
+    localStorage.setItem('vaultt_last_submission', Date.now().toString());
 
     // Trigger the native HTML form submission to the iframe
     e.target.submit();
@@ -154,7 +199,7 @@ const ConsultationForm = () => {
             {status === 'error' && (
               <div className="form-element flex items-center gap-3 bg-red-500/10 text-red-500 p-4 rounded-xl text-sm font-mono border border-red-500/20">
                 <AlertCircle size={20} />
-                <p>System error during transmission. Please try again.</p>
+                <p>{Object.keys(errors).length > 0 ? "Please correct the errors in the form." : "System error during transmission. Please try again."}</p>
               </div>
             )}
 
@@ -163,6 +208,11 @@ const ConsultationForm = () => {
             
             {/* Captures selected package - ALWAYS present so the column doesn't break */}
             <input type="hidden" id="submissionPackage" name="package" value="" />
+
+            {/* Honeypot field - hidden from users, but bots will fill it */}
+            <div style={{ display: 'none' }} aria-hidden="true">
+              <input type="text" name="website" tabIndex="-1" autoComplete="off" />
+            </div>
 
             {selectedPackage && (
               <div className="form-element bg-accent/10 border border-accent/20 text-accent px-4 py-3 rounded-xl font-mono text-sm inline-flex self-start mb-2">
@@ -181,6 +231,7 @@ const ConsultationForm = () => {
                 required
                 readOnly={status === 'submitting'}
               />
+              {errors.fullName && <span className="text-red-500 text-[10px] font-mono mt-1 uppercase">{errors.fullName[0]}</span>}
             </div>
 
             <div className="form-element flex flex-col gap-2">
@@ -194,6 +245,7 @@ const ConsultationForm = () => {
                 required
                 readOnly={status === 'submitting'}
               />
+              {errors.contactNumber && <span className="text-red-500 text-[10px] font-mono mt-1 uppercase">{errors.contactNumber[0]}</span>}
             </div>
 
             <div className="form-element flex flex-col gap-2">
@@ -207,6 +259,7 @@ const ConsultationForm = () => {
                 required
                 readOnly={status === 'submitting'}
               />
+              {errors.email && <span className="text-red-500 text-[10px] font-mono mt-1 uppercase">{errors.email[0]}</span>}
             </div>
 
             <div className="form-element flex flex-col gap-2">
@@ -220,6 +273,7 @@ const ConsultationForm = () => {
                 required
                 readOnly={status === 'submitting'}
               ></textarea>
+              {errors.message && <span className="text-red-500 text-[10px] font-mono mt-1 uppercase">{errors.message[0]}</span>}
             </div>
 
             <button
