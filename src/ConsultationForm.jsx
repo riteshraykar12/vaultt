@@ -230,6 +230,7 @@ const ConsultationForm = () => {
                 placeholder="Jane Doe"
                 required
                 readOnly={status === 'submitting'}
+                onChange={() => setErrors(prev => ({ ...prev, fullName: null }))}
               />
               {errors.fullName && <span className="text-red-500 text-[10px] font-mono mt-1 uppercase">{errors.fullName[0]}</span>}
             </div>
@@ -244,6 +245,7 @@ const ConsultationForm = () => {
                 placeholder="+1 (555) 000-0000"
                 required
                 readOnly={status === 'submitting'}
+                onChange={() => setErrors(prev => ({ ...prev, contactNumber: null }))}
               />
               {errors.contactNumber && <span className="text-red-500 text-[10px] font-mono mt-1 uppercase">{errors.contactNumber[0]}</span>}
             </div>
@@ -258,6 +260,7 @@ const ConsultationForm = () => {
                 placeholder="jane@example.com"
                 required
                 readOnly={status === 'submitting'}
+                onChange={() => setErrors(prev => ({ ...prev, email: null }))}
               />
               {errors.email && <span className="text-red-500 text-[10px] font-mono mt-1 uppercase">{errors.email[0]}</span>}
             </div>
@@ -272,6 +275,7 @@ const ConsultationForm = () => {
                 placeholder="Tell us about your project, goals, and timeline..."
                 required
                 readOnly={status === 'submitting'}
+                onChange={() => setErrors(prev => ({ ...prev, message: null }))}
               ></textarea>
               {errors.message && <span className="text-red-500 text-[10px] font-mono mt-1 uppercase">{errors.message[0]}</span>}
             </div>

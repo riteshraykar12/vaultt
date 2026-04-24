@@ -38,7 +38,7 @@ const Navbar = () => {
   return (
     <>
       <nav ref={navRef} className="fixed top-6 left-1/2 -translate-x-1/2 z-50 px-8 py-4 rounded-full border border-transparent transition-all flex items-center justify-between w-[90%] max-w-5xl text-foreground">
-        <div className="font-sans font-bold text-xl tracking-tight text-accent">vaultt.</div>
+        <Link to="/" onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})} className="font-sans font-bold text-xl tracking-tight text-accent hover:opacity-80 transition-opacity">vaultt.</Link>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8 text-sm font-medium">
@@ -511,7 +511,6 @@ const Testimonials = () => {
     </section>
   );
 };
-;
 
 // --- PROTOCOL ---
 const ProtocolCard = ({ index, title, description, Icon }) => {
@@ -597,7 +596,7 @@ const Protocol = () => {
 // --- PRICING ---
 const PricingCard = ({ title, price, subtitle, features, isPopular, buttonText, packageName }) => {
   return (
-    <div className={`relative bg-surface rounded-[2rem] p-8 border ${isPopular ? 'border-accent shadow-2xl shadow-accent/10 z-10 scale-105 md:scale-110' : 'border-muted/30 shadow-2xl'} flex flex-col h-full transition-transform hover:-translate-y-2 hover:shadow-[0_16px_32px_rgba(28,31,38,0.4),0_12px_0_#1C1F26]`}>
+    <div className={`relative bg-surface rounded-[2rem] p-8 border ${isPopular ? 'border-accent shadow-2xl shadow-accent/10 z-10 scale-105 md:scale-110' : 'border-muted/30 shadow-2xl'} flex flex-col h-full transition-all duration-300 hover:brightness-110`}>
       {isPopular && (
         <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-accent text-background font-bold text-xs px-4 py-1.5 rounded-full font-sans uppercase tracking-wider">
           Most Popular
