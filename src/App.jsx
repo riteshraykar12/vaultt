@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight, Check, CheckCircle2, ChevronRight, Activity, Terminal, Calendar, Code, Hexagon, Menu, X, Plus, Minus, ChevronDown } from 'lucide-react';
@@ -883,6 +883,22 @@ const Footer = () => {
 };
 
 const Home = () => {
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      const element = document.querySelector(hash);
+      if (element) {
+        // Small timeout to allow GSAP and layout to stabilize
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [hash]);
+
   return (
     <main className="min-h-screen bg-background relative selection:bg-accent selection:text-background">
       <Navbar />

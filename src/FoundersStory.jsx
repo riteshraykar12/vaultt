@@ -64,7 +64,7 @@ const FoundersStory = () => {
       {/* --- NAVBAR --- */}
       <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 px-6 py-3 rounded-full bg-background/60 backdrop-blur-xl border border-muted/30 flex items-center justify-between w-[90%] max-w-5xl">
         <Link
-          to="/"
+          to="/#about"
           className="flex items-center gap-2 text-white hover:text-accent transition-colors font-mono text-sm"
         >
           <ArrowLeft size={16} /> <span className="hidden sm:inline">vaultt.</span>
@@ -338,7 +338,7 @@ const FoundersStory = () => {
       {/* --- FOOTER --- */}
       <footer className="bg-[#111317] py-12 px-6 text-center border-t border-muted/20">
         <Link
-          to="/"
+          to="/#about"
           className="font-sans font-bold text-xl text-accent hover:opacity-80 transition-opacity"
         >
           vaultt.

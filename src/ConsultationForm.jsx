@@ -116,7 +116,7 @@ const ConsultationForm = () => {
 
       <div className="w-full max-w-2xl relative z-10">
         <div className="form-element mb-12">
-          <Link to="/" className="inline-flex items-center gap-2 text-white hover:text-foreground transition-colors mb-8 text-sm font-mono">
+          <Link to="/#contact" className="inline-flex items-center gap-2 text-white hover:text-foreground transition-colors mb-8 text-sm font-mono">
             <ArrowLeft size={16} />
             RETURN TO BASE
           </Link>
@@ -152,7 +152,7 @@ const ConsultationForm = () => {
             <p className="text-white font-mono text-sm">
               Your inquiry has been securely logged in our systems. We will establish contact shortly.
             </p>
-            <Link to="/" className="btn-magnetic bg-accent text-background px-8 py-3 mt-6 text-sm mb-4">
+            <Link to="/#contact" className="btn-magnetic bg-accent text-background px-8 py-3 mt-6 text-sm mb-4">
               <span>Return to Base</span>
             </Link>
             

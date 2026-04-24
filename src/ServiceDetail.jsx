@@ -237,7 +237,7 @@ const ServiceDetail = () => {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-4xl font-sans font-bold text-foreground mb-4">Service not found</h1>
-          <Link to="/" className="text-accent font-mono text-sm hover:underline">← Back to Home</Link>
+          <Link to="/#services" className="text-accent font-mono text-sm hover:underline">← Back to Home</Link>
         </div>
       </div>
     );
@@ -249,7 +249,7 @@ const ServiceDetail = () => {
     <main ref={heroRef} className="min-h-screen bg-background relative selection:bg-accent selection:text-background overflow-x-hidden">
       {/* --- BACK NAV --- */}
       <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 px-6 py-3 rounded-full bg-background/60 backdrop-blur-xl border border-muted/30 flex items-center justify-between w-[90%] max-w-5xl">
-        <Link to="/" className="flex items-center gap-2 text-white hover:text-accent transition-colors font-mono text-sm">
+        <Link to="/#services" className="flex items-center gap-2 text-white hover:text-accent transition-colors font-mono text-sm">
           <ArrowLeft size={16} /> <span className="hidden sm:inline">vaultt.</span>
         </Link>
         <span className="font-mono text-xs text-white/60 uppercase tracking-widest">{service.title}</span>
@@ -389,7 +389,7 @@ const ServiceDetail = () => {
 
       {/* --- FOOTER --- */}
       <footer className="bg-[#111317] py-12 px-6 text-center">
-        <Link to="/" className="font-sans font-bold text-xl text-accent hover:opacity-80 transition-opacity">vaultt.</Link>
+        <Link to="/#services" className="font-sans font-bold text-xl text-accent hover:opacity-80 transition-opacity">vaultt.</Link>
         <p className="font-mono text-xs text-white/40 mt-3">© {new Date().getFullYear()} vaultt. All systems operational.</p>
       </footer>
     </main>
