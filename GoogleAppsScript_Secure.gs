@@ -1,78 +1,86 @@
+const sheetName = 'Sheet1'; 
+const scriptProp = PropertiesService.getScriptProperties();
+
 /**
- * SECURE GOOGLE APPS SCRIPT HANDLER FOR VAULTT.
- * 
- * Instructions:
- * 1. Open your Google Apps Script editor.
- * 2. Replace your existing code with this secure implementation.
- * 3. Deploy as a Web App (Access: Anyone, even anonymous).
- * 
- * Features:
- * - Server-side validation (Length & Format)
- * - Server-side rate limiting (Email-based via CacheService)
- * - Honeypot verification
- * - XSS prevention (Input sanitization)
+ * SECURE INITIAL SETUP
+ * Run this once in the editor after pasting to link your spreadsheet.
  */
+function initialSetup () {
+  const activeSpreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  scriptProp.setProperty('key', activeSpreadsheet.getId());
+}
 
+/**
+ * SECURE POST HANDLER
+ */
 function doPost(e) {
-  var cache = CacheService.getScriptCache();
-  
+  const lock = LockService.getScriptLock();
+  lock.tryLock(10000); // Wait up to 10 seconds for a lock
+
+  const cache = CacheService.getScriptCache();
+
   try {
-    var params = e.parameter;
-    var name = params.fullName || "";
-    var email = params.email || "";
-    var message = params.message || "";
-    var honeypot = params.website || ""; // Hidden field from UI
+    const params = e.parameter;
+    const email = params.email || "";
+    const honeypot = params.website || "";
 
-    // 1. Honeypot check (Server-side)
+    // 1. HONEYPOT CHECK (Bot protection)
     if (honeypot.length > 0) {
-      console.warn("Honeypot triggered");
-      return createResponse("Transmission Successful", 200); // Silent fail
+      return createJsonResponse('success', 'Transmission processed'); // Silent fail
     }
 
-    // 2. Rate Limiting via Cache (Based on Email)
-    var lockKey = "throttle_" + Utilities.base64Encode(email);
+    // 2. RATE LIMITING (1 submission per 60s per email)
+    const lockKey = "throttle_" + Utilities.base64Encode(email);
     if (cache.get(lockKey)) {
-      return createResponse("Too Many Requests", 429);
+      return createJsonResponse('error', 'Too many requests. Please wait 60 seconds.');
     }
 
-    // 3. Server-Side Validation (CRITICAL)
-    if (name.length < 2 || name.length > 100) throw "Invalid Name";
-    if (email.indexOf("@") === -1 || email.length > 100) throw "Invalid Email";
-    if (message.length < 10 || message.length > 2000) throw "Invalid Message";
+    // 3. SERVER-SIDE VALIDATION
+    if ((params.fullName || "").length < 2) throw "Invalid Name";
+    if (email.indexOf("@") === -1) throw "Invalid Email Address";
+    if ((params.message || "").length < 10) throw "Message is too short";
 
-    // 4. Data Sanitization
-    name = sanitize(name);
-    email = sanitize(email);
-    message = sanitize(message);
+    // 4. SPREADSHEET ACCESS
+    const doc = SpreadsheetApp.openById(scriptProp.getProperty('key'));
+    const sheet = doc.getSheetByName(sheetName);
+    const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+    const nextRow = sheet.getLastRow() + 1;
 
-    // 5. Record to Sheet
-    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-    sheet.appendRow([
-      new Date(),
-      name,
-      params.contactNumber || "N/A",
-      email,
-      message,
-      params.package || "None",
-      params.time || "N/A"
-    ]);
+    // 5. DATA SANITIZATION & MAPPING
+    const newRow = headers.map(function(header) {
+      if (header === 'Date') return new Date();
+      
+      const rawValue = params[header] || "";
+      return sanitize(rawValue); // Cleans data before writing to sheet
+    });
 
-    // Set cache lock for 60 seconds
+    sheet.getRange(nextRow, 1, 1, newRow.length).setValues([newRow]);
+
+    // 6. SET RATE LIMIT LOCK
     cache.put(lockKey, "1", 60);
 
-    return createResponse("Success", 200);
+    return createJsonResponse('success', 'Transmission logged');
 
-  } catch (err) {
-    console.error("Submission Error: " + err);
-    return createResponse("System Error: " + err, 400);
+  } catch (error) {
+    return createJsonResponse('error', error.toString());
+  } finally {
+    lock.releaseLock();
   }
 }
 
+/**
+ * Sanitizes input to prevent basic XSS or malformed data
+ */
 function sanitize(str) {
-  // Basic XSS prevention: remove potential tags
-  return str.replace(/[<>]/g, ""); 
+  if (typeof str !== 'string') return str;
+  return str.replace(/[<>]/g, ""); // Strips < and > tags
 }
 
-function createResponse(msg, code) {
-  return ContentService.createTextOutput(msg).setMimeType(ContentService.MimeType.TEXT);
+/**
+ * Standardized JSON response
+ */
+function createJsonResponse(result, message) {
+  return ContentService
+    .createTextOutput(JSON.stringify({ 'result': result, 'message': message }))
+    .setMimeType(ContentService.MimeType.JSON);
 }
