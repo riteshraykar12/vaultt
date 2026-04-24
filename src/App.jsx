@@ -444,7 +444,7 @@ const FoundersBridge = () => {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-accent/30 to-transparent -translate-y-24"></div>
         
         <div className="mb-16">
-          <span className="font-mono text-accent text-xs tracking-[0.3em] uppercase block mb-4">The Narrative</span>
+          <span className="font-mono text-accent text-sm tracking-[0.4em] uppercase block mb-4">The Narrative</span>
           <h2 className="text-4xl lg:text-7xl font-sans font-bold text-foreground">
             Look what our <span className="font-drama italic text-accent font-light">founder</span> has to say.
           </h2>
