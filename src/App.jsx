@@ -430,14 +430,14 @@ const About = () => {
 const FoundersBridge = () => {
   return (
     <section className="py-24 px-6 bg-background relative z-10 flex flex-col items-center text-center">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-muted/30 to-transparent"></div>
-      <p className="text-white font-mono text-sm uppercase tracking-[0.2em] mb-8 opacity-60">
-        Look what our founder has to say.
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-accent/30 to-transparent"></div>
+      <p className="text-white font-mono text-sm uppercase tracking-[0.2em] mb-8">
+        Look what our <span className="text-accent font-bold">founder</span> has to say.
       </p>
-      <Link to="/founders-story" className="btn-magnetic bg-surface border border-muted/30 text-white px-8 py-5 rounded-2xl flex items-center gap-4 hover:border-accent transition-all group">
-        <span className="font-sans font-bold uppercase tracking-wider">Read Our Founder's Story</span>
-        <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent group-hover:text-background transition-colors">
-          <ArrowRight size={20} />
+      <Link to="/founders-story" className="btn-magnetic bg-accent text-background px-10 py-5 rounded-2xl flex items-center gap-4 hover:scale-[1.02] transition-all group shadow-[0_0_30px_rgba(248,232,79,0.15)]">
+        <span className="font-sans font-bold uppercase tracking-wider text-lg">Read Our Founder's Story</span>
+        <div className="w-10 h-10 rounded-full bg-background/10 flex items-center justify-center group-hover:translate-x-1 transition-transform">
+          <ArrowRight size={22} />
         </div>
       </Link>
     </section>
