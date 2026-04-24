@@ -44,7 +44,7 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-8 text-sm font-medium">
           <a href="#services" className="hover:-translate-y-px transition-transform text-white hover:text-foreground">Services</a>
           <a href="#method" className="hover:-translate-y-px transition-transform text-white hover:text-foreground">Method</a>
-          <a href="#founders-bridge" className="hover:-translate-y-px transition-transform text-white hover:text-foreground">Founder</a>
+          <a href="#founders-bridge" className="hover:-translate-y-px transition-transform text-white hover:text-foreground">Testimonials</a>
           <a href="#pricing" className="hover:-translate-y-px transition-transform text-white hover:text-foreground">Pricing</a>
           <a href="#faq" className="hover:-translate-y-px transition-transform text-white hover:text-foreground">FAQ</a>
           <Link to="/consultation" className="btn-magnetic bg-accent text-background px-6 py-2.5 rounded-full hover:-translate-y-px transition-all">
@@ -76,7 +76,7 @@ const Navbar = () => {
         <div className="flex flex-col items-center gap-10 text-3xl font-sans font-bold text-white">
           <a href="#services" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-accent transition-colors">Services</a>
           <a href="#method" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-accent transition-colors">Method</a>
-          <a href="#founders-bridge" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-accent transition-colors">Founder</a>
+          <a href="#founders-bridge" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-accent transition-colors">Testimonials</a>
           <a href="#pricing" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-accent transition-colors">Pricing</a>
           <a href="#faq" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-accent transition-colors">FAQ</a>
           <Link to="/consultation" onClick={() => setIsMobileMenuOpen(false)} className="mt-4 bg-accent text-background px-8 py-4 rounded-2xl hover:scale-[1.03] transition-transform text-xl uppercase tracking-wider text-black">
