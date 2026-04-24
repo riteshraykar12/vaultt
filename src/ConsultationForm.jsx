@@ -43,30 +43,39 @@ const ConsultationForm = () => {
     setErrors({});
 
     const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData.entries());
+    const rawData = Object.fromEntries(formData.entries());
+
+    // --- DEFENSE-IN-DEPTH: Payload Sanitization ---
+    const data = {
+      fullName: (rawData.fullName || "").trim().replace(/[<>]/g, ""),
+      contactNumber: (rawData.contactNumber || "").trim().replace(/[^\d+ ()-]/g, ""),
+      email: (rawData.email || "").trim().toLowerCase(),
+      message: (rawData.message || "").trim().replace(/[<>]/g, ""),
+      website: rawData.website // honeypot
+    };
 
     // 1. Honeypot check
     if (data.website) {
-      console.warn('Bot detected via honeypot.');
-      setStatus('success'); // Silently fail to the bot
+      console.warn('Security: Intercepted automated submission.');
+      setStatus('success'); // Silent fail
       return;
     }
 
-    // 2. Timing check (if submitted in < 3 seconds)
+    // 2. Timing check (Human threshold: 3 seconds)
     if (Date.now() - mountTime.current < 3000) {
-      console.warn('Bot detected via timing.');
+      console.warn('Security: Submission frequency too high.');
       setStatus('success');
       return;
     }
 
-    // 3. Throttling check (max 1 submission per 60 seconds)
+    // 3. Robust Throttling (LocalStorage + SessionCheck)
     const lastSubmission = localStorage.getItem('vaultt_last_submission');
     if (lastSubmission && Date.now() - parseInt(lastSubmission) < 60000) {
-      alert("Please wait 60 seconds before submitting again.");
+      alert("System cooling down. Please wait 60 seconds.");
       return;
     }
 
-    // 4. Robust Schema Validation
+    // 4. Schema Validation (Zod)
     const result = consultationSchema.safeParse(data);
     if (!result.success) {
       const fieldErrors = result.error.flatten().fieldErrors;
@@ -75,24 +84,31 @@ const ConsultationForm = () => {
       return;
     }
 
-    // Inject the exact local time the button was clicked
+    // 5. Payload Integrity - Update Form Fields with Sanitized Data
+    // We update the actual DOM elements so the native submit uses the cleaned data
+    Object.keys(data).forEach(key => {
+      if (e.target[key] && key !== 'website') {
+        e.target[key].value = data[key];
+      }
+    });
+
+    // Inject Metadata
     const timeInput = document.getElementById('submissionTime');
     if (timeInput) {
       timeInput.value = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     }
 
-    // Ensure package is explicitly set in the DOM before native submit
     const packageInput = document.getElementById('submissionPackage');
     if (packageInput) {
       packageInput.value = selectedPackage || 'None';
     }
 
-    // Update UI and record submission time
+    // Final UI State
     setStatus('submitting');
     setSubmitted(true);
     localStorage.setItem('vaultt_last_submission', Date.now().toString());
 
-    // Trigger the native HTML form submission to the iframe
+    // Native HTML Submit (Iframe Target)
     e.target.submit();
   };
 
